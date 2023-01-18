@@ -1,0 +1,17 @@
+{
+  "MaxHealth": 100,
+  "CurrentHealth": 100,
+  "HealthRegeneration": 1,
+  "MeleeDamage": 5,
+  "MeleeDamageModifier": 15,
+  "RangedDamageModifier": 5,
+  "MagicDamageModifier": 40,
+  "CriticalHitChance": 8,
+  "CriticalDamageMultiplier": 25,
+  "Speed": 5,
+  "Luck": 10,
+  "SciencePointsPerTurn": 9,
+  "NumberOfSciencePoints": 20,
+  "UsefulMaterialsPerTurn": 6,
+  "NumberOfUsefulMaterials": 20
+}
