@@ -12,12 +12,12 @@ public class InteractableObjectTest : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        transform.localScale = transform.localScale + new Vector3(0.2f,0.2f,0.2f);
+        Destroy(gameObject);
     }
 
     public void Deselect()
     {
-        _spriteRenderer.color = new Color(1,1,1,1);;
+        _spriteRenderer.color = new Color(1,1,1,1);
     }
 
     public void Select()
