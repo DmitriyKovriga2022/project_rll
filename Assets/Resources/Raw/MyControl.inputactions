@@ -112,6 +112,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Shooter",
+            "id": "d7e45c87-38d3-4de9-aec6-b243762385ae",
+            "actions": [
+                {
+                    "name": "AimFromMouse",
+                    "type": "PassThrough",
+                    "id": "c30b8984-3abb-4f78-a5d8-48cd119900fc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "4d744369-5a7d-4254-a367-70b38b374ecc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f764b2f-7969-491c-8bb0-f662434362d4",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AimFromMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8ef9655-a84d-4013-8a74-85f835165895",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
