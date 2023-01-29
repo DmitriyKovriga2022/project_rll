@@ -16,6 +16,11 @@ public class MovementController : MonoBehaviour
 
     void Awake()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _interactor = GetComponent<Interactor>();
 
@@ -33,6 +38,7 @@ public class MovementController : MonoBehaviour
         {
             Move();
         }
+        Look();
     }
 
     private void Dash()
@@ -46,6 +52,16 @@ public class MovementController : MonoBehaviour
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection.normalized * _speed * Time.fixedDeltaTime);
         }
+    }
+
+    private void Look()
+    {
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
+        mousePosition.z = Camera.main.nearClipPlane;
+        Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        LookDirection = (worldMousePosition - (Vector2)transform.position).normalized;
+        _animator.SetFloat("LookDirectionX", LookDirection.x);
+        _animator.SetFloat("LookDirectionY", LookDirection.y);
     }
 
 

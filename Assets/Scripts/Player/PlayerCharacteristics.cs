@@ -30,7 +30,7 @@ public class PlayerCharacteristics : MonoBehaviour
 
     public void LoadCharacteristics()
     {
-        _data = _saveLoadJson.LoadData();
+        _data = _saveLoadJson.LoadData(SaveLoadJson<PlayerCharacteristicsData>.PathName.StartCharacteristics);
 
         MaxHealth = _data.MaxHealth;
         CurrentHealth = _data.CurrentHealth;
@@ -67,6 +67,6 @@ public class PlayerCharacteristics : MonoBehaviour
         _data.UsefulMaterialsPerTurn = UsefulMaterialsPerTurn;
         _data.NumberOfUsefulMaterials = NumberOfUsefulMaterials;
 
-        _saveLoadJson.SaveData(_data);
+        _saveLoadJson.SaveData(_data, SaveLoadJson<PlayerCharacteristicsData>.PathName.SavedCharacteristics);
     }
 }

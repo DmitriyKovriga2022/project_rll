@@ -5,25 +5,29 @@ using System.IO;
 
 public class SaveLoadJson<T>
 {
-    private const string StreamingAssetsPath = "/Resources/Raw/StreamingAssets";
-    private const string SavedCharacteristicsPath = "/SavedCharacteristics.json";
-    private const string StartCharacteristicsPath = "/StartCharacteristics.json";
+    private const string StreamingAssetsPath = "/Resources/Raw/StreamingAssets/";
 
-    public T LoadData()
+    // private const string SavedPlayerCharacteristicsPath = "/SavedCharacteristics.json";
+    // private const string StartPlayerCharacteristicsPath = "/StartCharacteristics.json";
+    // private const string WeaponsCharacteristicsPath = "/SavedWeapons.json";
+
+    public enum PathName {SavedCharacteristics, StartCharacteristics, SavedWeapons};
+
+    public T LoadData(PathName pathName)
     {
-        string path = Application.dataPath + StreamingAssetsPath + SavedCharacteristicsPath;
+        string path = Application.dataPath + StreamingAssetsPath + pathName + ".json";
 
-        if (!File.Exists(path))
-        {
-            path = Application.dataPath + StreamingAssetsPath + StartCharacteristicsPath;
-        }
-
+        // if (!File.Exists(path))
+        // {
+        //     path = Application.dataPath + StreamingAssetsPath + StartPlayerCharacteristicsPath;
+        // }
+        
         T data = JsonUtility.FromJson<T>(File.ReadAllText(path));
         return data;
     }
 
-    public void SaveData(T data)
+    public void SaveData(T data, PathName pathName)
     {
-        File.WriteAllText(Application.dataPath + SavedCharacteristicsPath, JsonUtility.ToJson(data));
+        File.WriteAllText(Application.dataPath + StreamingAssetsPath + pathName + ".json", JsonUtility.ToJson(data, true));
     }
 }
