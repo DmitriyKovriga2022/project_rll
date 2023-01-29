@@ -7,7 +7,7 @@ public class PlayerCharacteristicsData
     public int MeleeDamage;
     public int MeleeDamageModifier;
     public int RangedDamageModifier;
-    public int MagicDamageModifier;
+    public int RateOfFireModifier;
     public int CriticalHitChance;
     public int CriticalDamageMultiplier;
     public int Speed;

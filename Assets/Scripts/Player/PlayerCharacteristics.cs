@@ -10,7 +10,7 @@ public class PlayerCharacteristics : MonoBehaviour
     public int MeleeDamage { get; private set; }
     public int MeleeDamageModifier { get; private set; }
     public int RangedDamageModifier { get; private set; }
-    public int MagicDamageModifier { get; private set; }
+    public int RateOfFireModifier { get; private set; }
     public int CriticalHitChance { get; private set; }
     public int CriticalDamageMultiplier { get; private set; }
     public int Speed { get; private set; }
@@ -38,7 +38,7 @@ public class PlayerCharacteristics : MonoBehaviour
         MeleeDamage = _data.MeleeDamage;
         MeleeDamageModifier = _data.MeleeDamageModifier;
         RangedDamageModifier = _data.RangedDamageModifier;
-        MagicDamageModifier = _data.MagicDamageModifier;
+        RateOfFireModifier = _data.RateOfFireModifier;
         CriticalHitChance = _data.CriticalHitChance;
         CriticalDamageMultiplier = _data.CriticalDamageMultiplier;
         Speed = _data.Speed;
@@ -57,7 +57,7 @@ public class PlayerCharacteristics : MonoBehaviour
         _data.MeleeDamage = MeleeDamage;
         _data.MeleeDamageModifier = MeleeDamageModifier;
         _data.RangedDamageModifier = RangedDamageModifier;
-        _data.MagicDamageModifier = MagicDamageModifier;
+        _data.RateOfFireModifier = RateOfFireModifier;
         _data.CriticalHitChance = CriticalHitChance;
         _data.CriticalDamageMultiplier = CriticalDamageMultiplier;
         _data.Speed = Speed;
