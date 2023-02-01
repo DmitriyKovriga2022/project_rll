@@ -5,7 +5,7 @@
   "MeleeDamage": 5,
   "MeleeDamageModifier": 15,
   "RangedDamageModifier": 5,
-  "MagicDamageModifier": 40,
+  "RateOfFireModifier": 40,
   "CriticalHitChance": 8,
   "CriticalDamageMultiplier": 25,
   "Speed": 5,
