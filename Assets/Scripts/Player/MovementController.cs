@@ -6,11 +6,18 @@ using UnityEngine.InputSystem;
 public class MovementController : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
 
     [SerializeField] private float _dashForce;
     private float _speed;
     private Vector2 _moveDirection, _dashDirection;
+<<<<<<< Updated upstream
     private bool _isOnDash;
+=======
+    public Vector2 LookDirection { get; private set; }
+    private enum State {Idle, Run, Dash};
+    private State _currentState;
+>>>>>>> Stashed changes
 
     private Interactor _interactor;
 
@@ -22,6 +29,7 @@ public class MovementController : MonoBehaviour
     private void Initialize()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         _interactor = GetComponent<Interactor>();
 
         _speed = GetComponent<PlayerCharacteristics>().Speed;
@@ -30,13 +38,17 @@ public class MovementController : MonoBehaviour
     
     void FixedUpdate()
     {
-        if(_isOnDash)
+        if(_currentState == State.Idle)
+        {
+            Idle();
+        }
+        if(_currentState == State.Run)
+        {
+            Run();
+        }
+        else if(_currentState == State.Dash)
         {
             Dash();
-        }
-        else
-        {
-            Move();
         }
         Look();
     }
@@ -46,12 +58,24 @@ public class MovementController : MonoBehaviour
         _rigidbody2D.AddForce(_dashDirection*_dashForce);
     }
 
-    private void Move()
+    private void Idle()
     {
-        if (_moveDirection != Vector2.zero)
+        if(_moveDirection != Vector2.zero)
         {
-            _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection.normalized * _speed * Time.fixedDeltaTime);
+            _currentState = State.Run;
+            SetAnimationState();
         }
+    }
+
+    private void Run()
+    {
+        if (_moveDirection == Vector2.zero)
+        {
+            _currentState = State.Idle;
+            SetAnimationState();
+            return;
+        }
+        _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection.normalized * _speed * Time.fixedDeltaTime);
     }
 
     private void Look()
@@ -60,8 +84,15 @@ public class MovementController : MonoBehaviour
         mousePosition.z = Camera.main.nearClipPlane;
         Vector2 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         LookDirection = (worldMousePosition - (Vector2)transform.position).normalized;
+
         _animator.SetFloat("LookDirectionX", LookDirection.x);
         _animator.SetFloat("LookDirectionY", LookDirection.y);
+    }
+
+    private void SetAnimationState()
+    {
+        _animator.SetBool("IsRun", _currentState == State.Run);
+        _animator.SetBool("IsDash", _currentState == State.Dash);
     }
 
 
@@ -72,7 +103,7 @@ public class MovementController : MonoBehaviour
 
     public void OnDash()
     {
-        if (!_isOnDash && _moveDirection != Vector2.zero) StartCoroutine(DashSwitch());
+        if (_currentState == State.Run) StartCoroutine(DashSwitch());
     }
 
     public void OnInteract()
@@ -83,11 +114,13 @@ public class MovementController : MonoBehaviour
     private IEnumerator DashSwitch()
     {
         _dashDirection = _moveDirection.normalized;
-        _isOnDash = true;
+        _currentState = State.Dash;
+        SetAnimationState();
 
         yield return new WaitForSeconds(0.5f);
 
-        _isOnDash = false;
+        _currentState = State.Idle;
+        SetAnimationState();
         _dashDirection = Vector2.zero;
     }
 }
