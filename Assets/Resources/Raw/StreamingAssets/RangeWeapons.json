@@ -1,0 +1,16 @@
+{
+  "objectsList": [
+    {
+      "ImagePath": "Textures/Weapons/character_hand_gun",
+      "Damage": 5,
+      "RateOfFire": 2.0,
+      "MuzzlePosition": [0.95, 0.35]
+    },
+    {
+      "ImagePath": "Textures/Weapons/character_hand_gun",
+      "Damage": 10,
+      "RateOfFire": 1.0,
+      "MuzzlePosition": [0.95, 0.35]
+    }
+  ]
+}

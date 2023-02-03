@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
     private float _speed;
     private Vector2 _moveDirection, _dashDirection;
     private bool _isOnDash;
+    public Vector2 LookDirection { get; private set; }
 
     private Interactor _interactor;
 

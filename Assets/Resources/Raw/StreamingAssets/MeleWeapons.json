@@ -1,0 +1,18 @@
+{
+  "objectsList": [
+    {
+      "ImagePath": "Textures/Weapons/Knife",
+      "Damage": 5,
+      "RateOfFire": 2.0,
+      "ColliderOffset": [0.0, 0.62],
+      "ColliderSize": [0.2, 0.62]
+    },
+    {
+      "ImagePath": "Textures/Weapons/Knife",
+      "Damage": 10,
+      "RateOfFire": 1.0,
+      "ColliderOffset": [0.0, 0.62],
+      "ColliderSize": [0.2, 0.62]
+    }
+  ]
+}
