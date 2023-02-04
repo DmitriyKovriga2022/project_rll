@@ -5,34 +5,35 @@ using UnityEngine.InputSystem;
 
 public class ShootingScript : MonoBehaviour
 {
-    private Rigidbody2D ourWeapon;
-    private Vector2 _mousePosition;
-    public Camera cam;
-    public GameObject bullet;
-    private float bulletForce = 20f;
-    public Transform firePoint;
-
-    private void Awake()
-    {
-        ourWeapon = gameObject.GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 lookDir = _mousePosition - ourWeapon.position; //если вычесть вектор из вектора, то мы получим прямую линию от одного к другому :)
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        ourWeapon.rotation = angle;
-    }
-
-    public void setMousePos(InputAction.CallbackContext context)
-    {
-        Debug.Log("MouseSetPos");
-        _mousePosition = cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
-    }
-
-    public void shoot()
-    {
-        GameObject currentBullet = Instantiate(bullet, gameObject.transform.position, gameObject.transform.rotation);
-        currentBullet.GetComponent<Rigidbody2D>().AddForce(gameObject.transform.up * bulletForce, ForceMode2D.Impulse);
-    }
+    
 }
+
+
+/*private Vector3 target;
+public Camera cam;
+
+public GameObject bullet;
+
+private float bulletForce = 25f;
+
+
+private void Update()
+{
+    Vector3 difference = target - transform.rotation.eulerAngles;
+    float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+    transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
+}
+
+public void setMousePos(InputAction.CallbackContext context)
+{
+    target = cam.ScreenToWorldPoint(context.ReadValue<Vector2>());
+}
+
+public void shoot(InputAction.CallbackContext context)
+{
+    if (context.performed)
+    {
+        GameObject projectile = Instantiate(bullet, gameObject.transform.position, transform.rotation);
+        projectile.GetComponent<Rigidbody2D>().AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
+    }
+}*/

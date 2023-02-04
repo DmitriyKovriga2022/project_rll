@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8720790740023017023}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,23 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0d61a03d4e9364d90c808c60618d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    MaxHealth: 0
-    CurrentHealth: 0
-    HealthRegeneration: 0
-    MeleeDamage: 0
-    MeleeDamageModifier: 0
-    RangedDamageModifier: 0
-    MagicDamageModifier: 0
-    CriticalHitChance: 0
-    CriticalDamageMultiplier: 0
-    Speed: 0
-    Luck: 0
-    SciencePointsPerTurn: 0
-    NumberOfSciencePoints: 0
-    UsefulMaterialsPerTurn: 0
-    NumberOfUsefulMaterials: 0
-    UniqueAbility: 
 --- !u!114 &8720790740023017023
 MonoBehaviour:
   m_ObjectHideFlags: 0

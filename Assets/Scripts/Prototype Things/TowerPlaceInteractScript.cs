@@ -13,6 +13,7 @@ public class TowerPlaceInteractScript : MonoBehaviour, IInteractable
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
     public void Deselect()
     {
         _spriteRenderer.color = new Color(1, 1, 1, 1);
@@ -28,5 +29,10 @@ public class TowerPlaceInteractScript : MonoBehaviour, IInteractable
     public void Select()
     {
         _spriteRenderer.color = new Color(1, 1, 1, 1);
+    }
+
+    public void OnMouseDown()
+    {
+        Interact();
     }
 }
