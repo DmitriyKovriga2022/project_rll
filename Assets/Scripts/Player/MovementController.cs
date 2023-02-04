@@ -11,13 +11,13 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float _dashForce;
     private float _speed;
     private Vector2 _moveDirection, _dashDirection;
-<<<<<<< Updated upstream
-    private bool _isOnDash;
-=======
-    public Vector2 LookDirection { get; private set; }
+
+
+    
     private enum State {Idle, Run, Dash};
     private State _currentState;
->>>>>>> Stashed changes
+    public Vector2 LookDirection { get; private set; }
+
 
     private Interactor _interactor;
 
