@@ -12,28 +12,13 @@ public class Weapon : MonoBehaviour
     private WeaponBase _currentWeapon;
     private MovementController _movementController;
 
-    private Vector2 _lookDirection;
+    public Vector2 _lookDirection;
 
-    private DataList<RangeWeaponData> _rangeWeaponsDataList = new();
-    //private DataList<MeleWeaponData> _meleWeaponsDataList = new();
-    public RangeWeaponData _rangeWeaponData = new();
-    //public MeleWeaponData _meleWeaponData = new();
-    private SaveLoadJson<DataList<RangeWeaponData>> _saveLoadRangeWeaponData = new();
-    //private SaveLoadJson<DataList<MeleWeaponData>> _saveLoadMeleWeaponData = new();
 
     private void Awake()
     {
         Initialize();
-        LoadData();
-        InitializeWeapon(2);
     }
-
-    private void LoadData()
-    {
-        _rangeWeaponsDataList = _saveLoadRangeWeaponData.LoadData(SaveLoadJson<DataList<RangeWeaponData>>.PathName.SavedWeapons);
-        //_meleWeaponsDataList = _saveLoadMeleWeaponData.LoadData();
-    }
-
 
     private void Initialize()
     {
@@ -46,16 +31,11 @@ public class Weapon : MonoBehaviour
         fire.action.canceled += CanceledFire;
     }
 
-    private void InitializeWeapon(int id)
+    public void SetWeapon(WeaponBase weapon)
     {
-        _rangeWeaponData = _rangeWeaponsDataList.objectsList[id];
-
-        Vector2 muzzlePosition = new Vector2(_rangeWeaponData.MuzzlePosition[0], _rangeWeaponData.MuzzlePosition[1]);
-
-        _currentWeapon = new RangeWeapon(gameObject, _rangeWeaponData.ImagePath, _rangeWeaponData.Damage, _rangeWeaponData.RateOfFire, muzzlePosition);
-
-        _spriteRenderer.sprite = Resources.Load<Sprite>(_currentWeapon.ImagePath);
-        _animator.SetFloat("RateOfFire", _currentWeapon.RateOfFire);
+        _currentWeapon = weapon;
+        
+        _animator.SetTrigger("ChangeWeapon");
     }
 
     private void LateUpdate() {
@@ -65,7 +45,7 @@ public class Weapon : MonoBehaviour
     private void Aim()
     {
         _lookDirection = _movementController.LookDirection;
-        Quaternion rotation = Quaternion.FromToRotation((Vector2)_transform.right + new Vector2(0, _rangeWeaponData.MuzzlePosition[1]) , _lookDirection*10 + (Vector2)_transform.localPosition);
+        Quaternion rotation = Quaternion.FromToRotation(_transform.right, _lookDirection);
         _transform.rotation = rotation * _transform.rotation;
     }
 
@@ -82,5 +62,13 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         _currentWeapon.Fire();
+    }
+
+    public void ChangeWeaponCharacteristics()
+    {
+        _currentWeapon.ChangeThisWeapon();
+        _animator.SetFloat("RateOfFire", _currentWeapon.RateOfFire);
+        _animator.SetInteger("WeaponType", _currentWeapon.WeaponType);
+        _spriteRenderer.sprite = _currentWeapon.Image;
     }
 }
