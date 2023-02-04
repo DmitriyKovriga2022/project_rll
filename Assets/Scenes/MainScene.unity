@@ -846,9 +846,9 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1341644429}
         m_TargetAssemblyTypeName: ShootingScript, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: setMousePos
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -862,9 +862,9 @@ MonoBehaviour:
     m_ActionName: Shooter/AimFromMouse[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1341644429}
         m_TargetAssemblyTypeName: ShootingScript, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: shoot
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -945,6 +945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6651aa73385423d4688f8e2d75bd237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 519420031}
+  bullet: {fileID: 4389437440709397700, guid: 50a197b683d32164c883b1dff242b52e, type: 3}
 --- !u!1001 &1466305829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20995,7 +20997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256499381398196784, guid: 991870b9d24c83946937e6b4650b47fc, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 991870b9d24c83946937e6b4650b47fc, type: 3}
