@@ -45,9 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 2
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &1909268666083213998
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,113 +96,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 3
-  IsBusy: 0
---- !u!1 &3048311192481137562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 377807294864927655}
-  - component: {fileID: 4158220004631317072}
-  m_Layer: 0
-  m_Name: Bounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &377807294864927655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3048311192481137562}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2535365701634323418}
-  - {fileID: 4197419624687396273}
-  m_Father: {fileID: 7288061938330899229}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4158220004631317072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3048311192481137562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cf8f74dac63e3468e42385f6c59d9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &3375171272153241347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2535365701634323418}
-  - component: {fileID: 7140442711124648113}
-  m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2535365701634323418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3375171272153241347}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 16.5, z: 0}
-  m_LocalScale: {x: 19, y: 53, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 377807294864927655}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7140442711124648113
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3375171272153241347}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &3724299257862152734
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,9 +147,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 1
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &5557659647475474111
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,9 +198,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 2
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &6552164115911503735
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,9 +249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 0
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &6788600595337028278
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,64 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2766fdc05dd54584d840bb9a9909d899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6822721045110694299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4197419624687396273}
-  - component: {fileID: 4707176192135017734}
-  m_Layer: 0
-  m_Name: Square (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4197419624687396273
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6822721045110694299}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17, y: 33.5, z: 0}
-  m_LocalScale: {x: 52, y: 19, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 377807294864927655}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4707176192135017734
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6822721045110694299}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &7288061937966089352
 GameObject:
   m_ObjectHideFlags: 0
@@ -18121,7 +17974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7288061938330899229}
-  - component: {fileID: 7510402206583361269}
+  - component: {fileID: 3649877942170443908}
   m_Layer: 0
   m_Name: Room6
   m_TagString: Untagged
@@ -18143,11 +17996,10 @@ Transform:
   m_Children:
   - {fileID: 7288061939000930339}
   - {fileID: 1551002364169796547}
-  - {fileID: 377807294864927655}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7510402206583361269
+--- !u!114 &3649877942170443908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18156,16 +18008,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7288061938330899230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a279c15f9adccf44bb189b97280d52b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 93ed874b023a43dbaf8a4a73ced13dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Tags:
   - Room
   CreatesTags:
-  - Corridor
-  Exits: {fileID: 3526558031337013091}
-  Bounds: {fileID: 4158220004631317072}
-  DeadEndChance: 0
+  - Room
+  Elements: {fileID: 0}
 --- !u!1 &7288061938333981628
 GameObject:
   m_ObjectHideFlags: 0
@@ -30975,9 +30825,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 3
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &8122250786018215578
 GameObject:
   m_ObjectHideFlags: 0
@@ -31023,9 +30876,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 1
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &9132349927279690385
 GameObject:
   m_ObjectHideFlags: 0
@@ -31071,6 +30927,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 0
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0

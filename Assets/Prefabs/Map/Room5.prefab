@@ -97,9 +97,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 0
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &1353963297767125461
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,9 +148,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 2
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &2402221445318782459
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,9 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 0
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &3410052285812697584
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,9 +250,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 1
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &3674176521920727290
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,9 +301,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 3
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &4237497792638427475
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,7 +9162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237497794125708407}
-  - component: {fileID: 4021916164000653727}
+  - component: {fileID: 4202644501430247951}
   m_Layer: 0
   m_Name: Room5
   m_TagString: Untagged
@@ -9169,11 +9184,10 @@ Transform:
   m_Children:
   - {fileID: 4237497793720016713}
   - {fileID: 5362868085646595241}
-  - {fileID: 6545073627029996749}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4021916164000653727
+--- !u!114 &4202644501430247951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9182,16 +9196,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4237497794125708404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a279c15f9adccf44bb189b97280d52b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 93ed874b023a43dbaf8a4a73ced13dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Tags:
   - Room
   CreatesTags:
-  - Corridor
-  Exits: {fileID: 8005748304413167625}
-  Bounds: {fileID: 7376350156849292602}
-  DeadEndChance: 0
+  - Room
+  Elements: {fileID: 0}
 --- !u!1 &4237497794126820566
 GameObject:
   m_ObjectHideFlags: 0
@@ -43401,9 +43413,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 3
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &6225000978417951737
 GameObject:
   m_ObjectHideFlags: 0
@@ -43449,9 +43464,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - HorizontalCorridor
+  - Room
   exitDirection: 2
-  IsBusy: 0
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
 --- !u!1 &7801824464156544372
 GameObject:
   m_ObjectHideFlags: 0
@@ -43497,109 +43515,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreatesTags:
-  - VerticalCorridor
+  - Room
   exitDirection: 1
-  IsBusy: 0
---- !u!1 &8159955251031652457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8990757015076756656}
-  - component: {fileID: 4394680504759324635}
-  m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8990757015076756656
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8159955251031652457}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17, y: 16.5, z: 0}
-  m_LocalScale: {x: 52, y: 53, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6545073627029996749}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4394680504759324635
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8159955251031652457}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!1 &8477813628734582000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6545073627029996749}
-  - component: {fileID: 7376350156849292602}
-  m_Layer: 0
-  m_Name: Bounds
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6545073627029996749
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8477813628734582000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8990757015076756656}
-  m_Father: {fileID: 4237497794125708407}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7376350156849292602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8477813628734582000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4cf8f74dac63e3468e42385f6c59d9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Exit: {fileID: 0}
+  DeadEnd: {fileID: 0}
+  Entrance: {fileID: 0}
+  currentState: 0
