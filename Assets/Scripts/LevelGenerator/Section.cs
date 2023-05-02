@@ -20,7 +20,7 @@ namespace LevelGenerator.Scripts
             _levelGenerator = levelGenerator;
             _levelGenerator.RegisterNewSection(this, sectionPositionOnMap);
 
-            RoomController.Initialize(levelGenerator.CmConfiner);
+            RoomController.Initialize(levelGenerator.CameraController);
 
             GenerateAnnexes();
         }
