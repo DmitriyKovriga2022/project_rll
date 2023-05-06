@@ -13,11 +13,9 @@ namespace LevelGenerator.Scripts
         public void SetExit(AdvancedExit entrance, RoomController roomController)
         {
             CurrentState = State.busy;
-            // Exit.SetActive(true);
-            // DeadEnd.SetActive(false);
-            var exit = GetComponentInChildren<Exit>();
-            exit.Entrance = entrance.GetComponentInChildren<Exit>();
-            roomController.RegisterExit(exit);
+            var door = GetComponentInChildren<DoorController>();
+            door.Entrance = entrance.GetComponentInChildren<DoorController>();
+            roomController.RegisterExit(door);
         }
 
         public void SetDeadEnd()

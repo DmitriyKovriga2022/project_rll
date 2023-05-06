@@ -4,7 +4,6 @@ using LevelGenerator.Scripts.Exceptions;
 using LevelGenerator.Scripts.Helpers;
 using LevelGenerator.Scripts.Structure;
 using UnityEngine;
-using Cinemachine;
 
 namespace LevelGenerator.Scripts
 {
@@ -18,7 +17,7 @@ namespace LevelGenerator.Scripts
         [SerializeField] private Section[] _sections;
         [SerializeField] private string[] _initialSectionTags;
         [SerializeField] private TagRule[] _specialRules;
-        public CinemachineConfiner CmConfiner;
+        public CameraController CameraController;
 
         private List<Section> _registeredSections = new List<Section>();
 
