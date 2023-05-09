@@ -13,16 +13,17 @@ namespace LevelGenerator.Scripts
         [SerializeField] private Vector2Int _levelSize;
         [SerializeField] private Vector2Int _roomSize;
         [SerializeField] private Vector2Int _startRoomPosition;
-        private Element[,] _map;
         [SerializeField] private Section[] _sections;
-        [SerializeField] private string[] _initialSectionTags;
+        [SerializeField] private InitialSection _initialSection;
         [SerializeField] private TagRule[] _specialRules;
         public CameraController CameraController;
 
         private List<Section> _registeredSections = new List<Section>();
+        private InitialSection _registeredInitialSection;
+        private Element[,] _map;
+        private RoomController _startRoom;
 
         public Transform Container => transform;
-        private RoomController _startRoom;
 
         private void Start()
         {
@@ -48,9 +49,10 @@ namespace LevelGenerator.Scripts
 
         private void CreateInitialSection()
         {
-            Section room = Instantiate(PickSectionWithTag(_initialSectionTags, new Section[0]), (Vector2)(_startRoomPosition * _roomSize), Quaternion.Euler(0,0,0), transform);
-            room.Initialize(this, _startRoomPosition);
+            Section room = Instantiate(_initialSection, (Vector2)(_startRoomPosition * _roomSize), Quaternion.Euler(0,0,0), transform);
             _startRoom = room.RoomController;
+            room.ActivateRoomController(CameraController);
+            room.Initialize(this, _startRoomPosition);
         }
 
         public bool IsSectionValid(AdvancedExit exit, Section newSection, Element initialElement, out Vector2Int newSectionPos)
@@ -67,6 +69,12 @@ namespace LevelGenerator.Scripts
                     || _map[elementPosOnMap.x, elementPosOnMap.y] != null) return false;
             }
             return true;
+        }
+
+        public void RegisterInitialSection(InitialSection initialSection)
+        {
+            _registeredInitialSection = initialSection;
+            initialSection.Elements.ContainedElements.First().PositionOnMap = _startRoomPosition;
         }
 
         public void RegisterNewSection(Section newSection, Vector2Int sectionPositionOnMap)

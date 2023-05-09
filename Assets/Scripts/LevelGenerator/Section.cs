@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using LevelGenerator.Scripts.Helpers;
 using UnityEngine;
@@ -13,19 +12,22 @@ namespace LevelGenerator.Scripts
         public Elements Elements;
         public RoomController RoomController;
 
-        private LevelGenerator _levelGenerator;
+        protected LevelGenerator LevelGenerator;
+        protected Vector2Int PositionOnMap;
         
-        public void Initialize(LevelGenerator levelGenerator, Vector2Int sectionPositionOnMap)
+        public virtual void Initialize(LevelGenerator levelGenerator, Vector2Int sectionPositionOnMap)
         {
-            _levelGenerator = levelGenerator;
-            _levelGenerator.RegisterNewSection(this, sectionPositionOnMap);
-
-            RoomController.Initialize(levelGenerator.CameraController);
-
+            LevelGenerator = levelGenerator;
+            PositionOnMap = sectionPositionOnMap;
+            RegisterInGenerator();
             GenerateAnnexes();
         }
 
-        private void GenerateAnnexes()
+        protected virtual void RegisterInGenerator() => LevelGenerator.RegisterNewSection(this, PositionOnMap);
+
+        public void ActivateRoomController(CameraController controller) => RoomController.Initialize(controller);
+
+        protected virtual void GenerateAnnexes()
         {
             if (CreatesTags.Any())
             {
@@ -35,7 +37,7 @@ namespace LevelGenerator.Scripts
                     var exit = exits.PickOne();
                     exits.Remove(exit);
                     if (exit.CurrentState != AdvancedExit.State.free) continue;
-                    if (_levelGenerator.IsExitExtreme(exit)) 
+                    if (LevelGenerator.IsExitExtreme(exit)) 
                     {
                         exit.SetDeadEnd();
                         continue;
@@ -46,7 +48,7 @@ namespace LevelGenerator.Scripts
             }
         }
 
-        private List<AdvancedExit> GetAllExits()
+        protected List<AdvancedExit> GetAllExits()
         {
             List<AdvancedExit> exits = new();
             foreach (var element in Elements.ContainedElements)
@@ -54,16 +56,16 @@ namespace LevelGenerator.Scripts
             return exits;
         }
 
-        private bool IsRoomFoud(AdvancedExit exit)
+        protected bool IsRoomFoud(AdvancedExit exit)
         {
-            Element neighborElement = _levelGenerator.GetNeighborElement(exit);
+            Element neighborElement = LevelGenerator.GetNeighborElement(exit);
             if (neighborElement != null)
             {
                 foreach(var entrance in neighborElement.ExitSpots)
                 {
                     if (ExitMethods.AreDirectionsOpposite(exit.ExitDirection, entrance.ExitDirection))
                     {
-                        SetExits(exit, entrance);
+                        SetExits(exit, entrance, neighborElement.Section);
                         return true;
                     }
                 }
@@ -71,14 +73,14 @@ namespace LevelGenerator.Scripts
             return false;
         }
 
-        private void GenerateSection(AdvancedExit exit) 
+        protected void GenerateSection(AdvancedExit exit) 
         {
             List<Section> sectionsToIgnore = new();
             while(true)
             {
                 try
                 {
-                    var candidate = _levelGenerator.PickSectionWithTag(Tags, sectionsToIgnore);
+                    var candidate = LevelGenerator.PickSectionWithTag(CreatesTags, sectionsToIgnore);
                     List<Element> elements = candidate.Elements.ContainedElements.ToList();
                     while(elements.Count > 0)
                     {
@@ -86,11 +88,12 @@ namespace LevelGenerator.Scripts
                         Vector2Int sectionPosOnMap;
                         if (element.GetExitInDirection(ExitMethods.GetOppositeDirection(exit.ExitDirection)) != null)
                         {
-                            if (_levelGenerator.IsSectionValid(exit, candidate, element, out sectionPosOnMap))
+                            if (LevelGenerator.IsSectionValid(exit, candidate, element, out sectionPosOnMap))
                             {
                                 var newSection = BuildSection(candidate, sectionPosOnMap);
+                                newSection.ActivateRoomController(LevelGenerator.CameraController);
                                 TakeEntrance(newSection, element.Position, exit);
-                                newSection.Initialize(_levelGenerator, sectionPosOnMap);
+                                newSection.Initialize(LevelGenerator, sectionPosOnMap);
                                 return;
                             }
                         }
@@ -99,7 +102,7 @@ namespace LevelGenerator.Scripts
                     sectionsToIgnore.Add(candidate);
                 }
                 catch (System.Exception) 
-                { 
+                {
                     exit.SetDeadEnd();
                     break; 
                 }
@@ -107,7 +110,7 @@ namespace LevelGenerator.Scripts
         }
 
 
-        private void TakeEntrance(Section newSection, Vector2Int elementPosition, AdvancedExit exit)
+        protected void TakeEntrance(Section newSection, Vector2Int elementPosition, AdvancedExit exit)
         {
             foreach(var element in newSection.Elements.ContainedElements)
             {
@@ -117,7 +120,7 @@ namespace LevelGenerator.Scripts
                     {
                         if (ExitMethods.AreDirectionsOpposite(entrance.ExitDirection, exit.ExitDirection))
                         {
-                            SetExits(exit, entrance);
+                            SetExits(exit, entrance, newSection);
                             return;
                         }
                     }
@@ -125,11 +128,12 @@ namespace LevelGenerator.Scripts
             }
         }
 
-        private void SetExits(AdvancedExit exit, AdvancedExit entrance)
+        protected void SetExits(AdvancedExit exit, AdvancedExit entrance, Section newSection)
         {
             exit.SetExit(entrance, RoomController);
+            entrance.SetExit(exit, newSection.RoomController);
         }
 
-        private Section BuildSection(Section section, Vector2Int sectionPositionOnMap) => Instantiate(section, _levelGenerator.SetWorldPosition(sectionPositionOnMap), Quaternion.Euler(0,0,0), _levelGenerator.Container);
+        protected Section BuildSection(Section section, Vector2Int sectionPositionOnMap) => Instantiate(section, LevelGenerator.SetWorldPosition(sectionPositionOnMap), Quaternion.Euler(0,0,0), LevelGenerator.Container);
     }
 }

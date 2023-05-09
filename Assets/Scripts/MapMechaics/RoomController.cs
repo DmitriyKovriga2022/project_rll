@@ -1,12 +1,13 @@
-using System.Collections;
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class RoomController : MonoBehaviour
 {
     [SerializeField] private Collider2D _confiner;
     public event Action<Collider2D> ActivateRoom;
     private CameraController _cameraController;
+    private List<DoorController> _registeredDoors;
 
     public void Initialize(CameraController cameraController)
     {

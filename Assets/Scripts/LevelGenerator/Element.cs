@@ -10,6 +10,8 @@ namespace LevelGenerator.Scripts
         public IEnumerable<AdvancedExit> ExitSpots => GetComponentsInChildren<AdvancedExit>().Where(t => t != null);
         public Vector2Int Position;
         [NonSerialized] public Vector2Int PositionOnMap;
+        
+        public Section Section => GetComponentInParent<Section>();
 
         public AdvancedExit GetExitInDirection(ExitDirection direction)
         {
