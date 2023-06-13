@@ -10,14 +10,13 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] private float _dashForce;
     private float _speed;
+    private int _acceleration = 1500;
     private Vector2 _moveDirection, _dashDirection;
-
 
     
     private enum State {Idle, Run, Dash};
     private State _currentState;
     public Vector2 LookDirection { get; private set; }
-
 
     private Interactor _interactor;
 
@@ -75,7 +74,15 @@ public class MovementController : MonoBehaviour
             SetAnimationState();
             return;
         }
-        _rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection.normalized * _speed * Time.fixedDeltaTime);
+
+        if (_rigidbody2D.velocity.magnitude >= _speed)
+        {
+            _rigidbody2D.velocity = _moveDirection.normalized * _speed / Mathf.Clamp01(1f - _rigidbody2D.drag * Time.fixedDeltaTime);
+        }
+        else
+        {
+            _rigidbody2D.AddForce(_rigidbody2D.velocity + _moveDirection.normalized * _acceleration);
+        }  
     }
 
     private void Look()
@@ -95,7 +102,6 @@ public class MovementController : MonoBehaviour
         _animator.SetBool("IsDash", _currentState == State.Dash);
     }
 
-
     public void OnMove(InputValue input)
     {
         _moveDirection = input.Get<Vector2>();
@@ -110,7 +116,7 @@ public class MovementController : MonoBehaviour
     {
         _interactor.Interact();
     }
-
+    
     private IEnumerator DashSwitch()
     {
         _dashDirection = _moveDirection.normalized;
